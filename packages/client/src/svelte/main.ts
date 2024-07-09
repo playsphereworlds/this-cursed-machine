@@ -9,27 +9,42 @@ import { transportObserver } from "@latticexyz/common"
 import { Chain, fallback, webSocket } from "viem"
 
 const getEnvironment = () => {
-  switch (window.location.hostname) {
-    case "thiscursedmachine.fun":
-      return ENVIRONMENT.REDSTONE
-    case "redstone-preview.thiscursedmachine.fun":
-      return ENVIRONMENT.REDSTONE
-    case "redstone-test.thiscursedmachine.fun":
-      return ENVIRONMENT.REDSTONE_TEST
-    case "garnet.thiscursedmachine.fun":
+  const urlParams = new URLSearchParams(window.location.search)
+  const chainId = urlParams.get("chainId")
+  switch (chainId) {
+    case "17069":
       return ENVIRONMENT.GARNET
-    case "poetic-arithmetic-6cc2ce.netlify.app":
-      return ENVIRONMENT.GARNET
-    case "garnet-account-kit.thiscursedmachine.fun":
-      return ENVIRONMENT.GARNET_ACCOUNT_KIT
+    case "690":
+      return ENVIRONMENT.REDSTONE
     default:
-      const urlParams = new URLSearchParams(window.location.search)
       if (urlParams.has("useAccountKit")) {
         return ENVIRONMENT.REDSTONE
       } else {
-        return ENVIRONMENT.DEVELOPMENT
+        switch (window.location.hostname) {
+          case "thiscursedmachine.fun":
+            return ENVIRONMENT.REDSTONE
+          case "redstone-preview.thiscursedmachine.fun":
+            return ENVIRONMENT.REDSTONE
+          case "redstone-test.thiscursedmachine.fun":
+            return ENVIRONMENT.REDSTONE_TEST
+          case "garnet.thiscursedmachine.fun":
+            return ENVIRONMENT.GARNET
+          case "poetic-arithmetic-6cc2ce.netlify.app":
+            return ENVIRONMENT.GARNET
+          case "garnet-account-kit.thiscursedmachine.fun":
+            return ENVIRONMENT.GARNET_ACCOUNT_KIT
+          default:
+            const urlParams = new URLSearchParams(window.location.search)
+            if (urlParams.has("useAccountKit")) {
+              return ENVIRONMENT.REDSTONE
+            } else {
+              return ENVIRONMENT.DEVELOPMENT
+            }
+        }
       }
   }
+
+
 }
 
 const environment = getEnvironment()
