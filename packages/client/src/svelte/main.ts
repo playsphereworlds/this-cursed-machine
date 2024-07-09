@@ -18,6 +18,8 @@ const getEnvironment = () => {
       return ENVIRONMENT.REDSTONE_TEST
     case "garnet.thiscursedmachine.fun":
       return ENVIRONMENT.GARNET
+    case "poetic-arithmetic-6cc2ce.netlify.app":
+      return ENVIRONMENT.GARNET
     case "garnet-account-kit.thiscursedmachine.fun":
       return ENVIRONMENT.GARNET_ACCOUNT_KIT
     default:
@@ -37,7 +39,7 @@ const networkConfig = getNetworkConfig(environment)
 // only include foundry chain in development
 const chains =
   environment === ENVIRONMENT.DEVELOPMENT ||
-  environment === ENVIRONMENT.DEVELOPMENT_ACCOUNT_KIT
+    environment === ENVIRONMENT.DEVELOPMENT_ACCOUNT_KIT
     ? supportedChains
     : supportedChains.filter(c => c.id !== 31337)
 
