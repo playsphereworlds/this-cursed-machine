@@ -1,0 +1,10 @@
+node_modules
+dist
+.parcel-cache
+.svelte-kit
+.DS_Store
+coverage
+.env2
+
+# Sentry Config File
+.env.sentry-build-plugin

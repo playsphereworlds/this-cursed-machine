@@ -1,0 +1,425 @@
+@import url("./public/fonts/index.css");
+
+:root {
+  /* Colors */
+  --black: #0b0b0b;
+  --white: #d7d7c3;
+  /* --white: #dcdccb; */
+
+  --background: var(--black);
+  --foreground: var(--white);
+
+  --color-grey-dark: #333;
+  --color-grey-mid: #666;
+  --color-grey-light: #999;
+
+  --color-failure: #ff2600;
+  --color-alert: #00e5ff;
+  --color-info: #bb3af2;
+  --color-success: #a4fa3b;
+  --color-tutorial: #f6ff00;
+
+  /* Sizing */
+  --default-padding: 14px;
+  --top-bar-height: 40px;
+  --tab-bar-height: 90px;
+
+  /* Fonts */
+  --font-family: "SixtyfourLocal", "SixtyFour", monospace;
+  --font-size-label: 8px;
+  --font-size-small: 9px;
+  --font-size-normal: 14px;
+  --font-size-large: 18px;
+
+  /* Misc */
+  --default-border-style: 5px double var(--color-grey-dark);
+
+  /** Layers */
+  --z-0: 0;
+  --z-1: 1;
+  --z-2: 2;
+  --z-3: 3;
+  --z-4: 4;
+  --z-5: 5;
+  --z-6: 6;
+  --z-7: 7;
+  --z-8: 8;
+  --z-9: 9;
+  --z-10: 10;
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-transform: uppercase;
+  letter-spacing: 0px;
+}
+
+main {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  main {
+    display: block;
+  }
+}
+
+pre {
+  font-family: var(--font-family);
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.cursor-none {
+  cursor: none;
+}
+
+.player:hover,
+.machine:hover,
+.connection:hover,
+.tank-item:hover,
+.highlight:not(.disabled-highlight) {
+  animation: filterin 0.1s ease forwards;
+}
+
+.disabled-highlight {
+  animation: filterdisabledin 0.1s ease forwards;
+}
+
+.running-1 {
+  animation: run 0.1s ease infinite alternate;
+}
+
+.running-3,
+.running-2 {
+  animation: run 0.3s ease infinite alternate;
+}
+
+@keyframes run {
+  0% {
+    filter: blur(0px);
+    translate: 0px 0px;
+  }
+  10% {
+    filter: blur(0.2px);
+    transform: translate(1px, 1px);
+  }
+  20% {
+    filter: blur(0.4px);
+    transform: translate(-1px, -1px);
+  }
+  30% {
+    filter: blur(0.6px);
+    transform: translate(1px, -1px);
+  }
+  40% {
+    filter: blur(0.8px);
+    transform: translate(-1px, 1px);
+  }
+  50% {
+    filter: blur(1px);
+    transform: translate(0px, 0px);
+  }
+  60% {
+    filter: blur(1.2px);
+    transform: translate(1px, -1px);
+  }
+  70% {
+    filter: blur(1.4px);
+    transform: translate(-1px, 1px);
+  }
+  80% {
+    filter: blur(1.6px);
+    transform: translate(1px, 1px);
+  }
+  90% {
+    filter: blur(1.8px);
+    transform: translate(-1px, -1px);
+  }
+  100% {
+    filter: blur(2px);
+    translate: 0px 0px;
+  }
+}
+
+/* .flash {
+  animation: strobe 200ms steps(1, end) infinite;
+} */
+
+.flash-fast {
+  animation: strobe 80ms steps(1, end) infinite;
+}
+
+.blink {
+  animation: strobe 1200ms steps(1, end) infinite;
+}
+
+.flash-fast-thrice {
+  animation: strobe 120ms steps(1, end) 3;
+}
+
+.flash-slow-thrice {
+  animation: strobe 240ms steps(1, end) 3;
+}
+
+.flash-a-little,
+.flash-a-bit {
+  animation: strobe 200ms steps(1, end) 3;
+}
+
+.thud {
+  animation: thud 700ms steps(10, end) 1;
+}
+
+body,
+html {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family);
+  font-size: var(--font-size-normal);
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: none;
+  /* background-size: 100px; */
+}
+
+h1,
+h2,
+h3,
+p,
+svg {
+  user-select: none;
+}
+
+.action {
+  z-index: var(--z-10);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  display: block;
+  position: absolute;
+}
+
+.loading-message p:first-child {
+  margin-top: 0;
+}
+
+.loading-message .info {
+  background: var(--color-info);
+}
+
+.loading-message .alert {
+  color: var(--color-alert);
+}
+
+.loading-message .success {
+  color: var(--color-success);
+}
+
+.loading-message .failure {
+  color: var(--color-failure);
+}
+
+.loading-message .quote {
+  letter-spacing: 5px;
+}
+
+.loading-message div {
+  margin-bottom: 1em;
+}
+
+pre {
+  display: block;
+  white-space-collapse: preserve;
+  text-wrap: nowrap;
+  margin: 0;
+  text-indent: 0;
+}
+
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--foreground);
+  z-index: var(--z-10);
+  opacity: 0.8;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pulse {
+  animation: pulse 0.8s infinite alternate ease-out;
+}
+
+.pulse-opacity {
+  animation: pulse-opacity 0.8s infinite alternate ease-out;
+}
+
+.command {
+  background-color: var(--color-tutorial) !important;
+  color: var(--background);
+  padding: 2px 0 0;
+  margin-top: -2px;
+  display: inline-block;
+}
+
+.emphasis {
+  animation: emphasis 1s steps(1) infinite;
+}
+
+.emphasis-success {
+  animation: emphasis-success 1s steps(1) 3;
+}
+.emphasis-failure {
+  animation: emphasis-failure 1s steps(1) 3;
+}
+
+/** Bunch of animations :) */
+
+@keyframes running {
+  0%,
+  100% {
+    opacity: 0;
+    /* filter: blur(0px); */
+  }
+
+  50% {
+    opacity: 1;
+    /* filter: blur(20px); */
+  }
+}
+
+@keyframes filterin {
+  0% {
+    filter: contrast(100%) grayscale(0%) brightness(100%);
+  }
+  100% {
+    filter: contrast(50%) grayscale(100%) brightness(130%)
+      drop-shadow(0px 0px 2px var(--white)) contrast(300%);
+  }
+}
+
+@keyframes filterdisabledin {
+  0% {
+    filter: contrast(100%) grayscale(0%) brightness(100%);
+  }
+  100% {
+    filter: contrast(50%) grayscale(100%) brightness(70%)
+      drop-shadow(0px 0px 2px var(--black));
+  }
+}
+
+@keyframes emphasis {
+  0%,
+  100% {
+    background: var(--color-tutorial);
+    color: var(--background);
+  }
+  50% {
+    background: var(--background);
+    color: var(--foreground);
+  }
+}
+
+@keyframes emphasis-success {
+  0%,
+  100% {
+    background: var(--color-success);
+    color: var(--black);
+  }
+  50% {
+    background: transparent;
+    color: var(--white);
+  }
+}
+@keyframes emphasis-failure {
+  0%,
+  100% {
+    background: var(--color-failure);
+    color: var(--black);
+  }
+  50% {
+    background: transparent;
+    color: var(--white);
+  }
+}
+@keyframes pulse {
+  0% {
+    background: var(--color-grey-mid);
+  }
+  100% {
+    background: var(--color-tutorial);
+  }
+}
+
+@keyframes pulse-opacity {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes thud {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    filter: blur(0px);
+  }
+
+  55% {
+    transform: translateY(1px);
+    /* filter: blur(2px); */
+  }
+
+  60% {
+    transform: translateY(0px);
+  }
+
+  85% {
+    filter: blur(0px);
+  }
+}
+
+@keyframes strobe {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes strobe-slow {
+  20% {
+    opacity: 0;
+  }
+}
