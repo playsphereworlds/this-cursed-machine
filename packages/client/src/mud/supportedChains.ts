@@ -28,7 +28,6 @@ import {
 
 const extendedGarnet = {
   ...garnet,
-  faucetUrl: "https://17001-faucet.quarry.linfra.xyz/trpc/drip",
 } as const satisfies MUDChain;
 
 const extendedRedstone = {
