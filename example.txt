@@ -1,0 +1,8 @@
+curl -X POST \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@/path/to/your/local/file.txt" \
+  -F "owner=your-github-username" \
+  -F "repo=this-cursed-machine" \
+  -F "path=path/in/repo/file.txt" \
+  -F "message=Commit message" \
+  http://localhost:3000/commit-file
